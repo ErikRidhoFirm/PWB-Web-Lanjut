@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\WelcomeController; //menambahkan impor controller ke route
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hello', function() {
-    return 'Hello World';
-});
+Route::get('/hello', [WelcomeController::class,'hello']);
 
 Route::get('/world', function() {
     return 'World';
