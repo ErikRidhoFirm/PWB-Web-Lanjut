@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController; //menambahkan impor controller ke route
+use App\Http\Controllers\PageController; //menambahkan impor controller ke route
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +15,7 @@ use App\Http\Controllers\WelcomeController; //menambahkan impor controller ke ro
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PageController::class, 'welcome']);
 
 Route::get('/hello', [WelcomeController::class,'hello']);
 
@@ -27,9 +27,7 @@ Route::get('/welcome', function() {
     return 'Selamat Datang';
 });
 
-Route::get('/about', function() {
-    return 'Nama saya Erik Ridho Firmansyah, NIM : 2341720031';
-});
+Route::get('/about', [PageController::class, 'about']);
 
 Route::get('/user/{name}', function($name) {
     return 'Nama saya '.$name;
@@ -39,9 +37,7 @@ Route::get('/posts/{post}/comments/{comment}', function($postId, $commentId){
     return 'Pos ke-'.$postId." Komentar ke-: ".$commentId;
 });
 
-Route::get('/articles/{id}', function($id){
-    return 'Halaman Artikel dengan ID - '.$id;
-});
+Route::get('/articles/{id}', [PageController::class, 'articles']);
 
 Route::get('/user/{name?}', function ($name='John'){
     return 'Nama saya '.$name;
