@@ -6,6 +6,7 @@ use App\Http\Controllers\PageController; //menambahkan impor controller ke route
 use App\Http\Controllers\HomeController; //menambahkan impor controller ke route
 use App\Http\Controllers\AboutController; //menambahkan impor controller ke route
 use App\Http\Controllers\ArticleController; //menambahkan impor controller ke route
+use App\Http\Controllers\PhotoController; //menambahkan impor controller ke route
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,3 +47,11 @@ Route::get('/user/{name?}', function ($name='John'){
 });
 
 Route::get('/home', [HomeController::class, 'home']);
+
+Route::resource('photos', PhotoController::class)-> only([
+    'index', 'show'
+]);
+
+Route::resource('photos', PhotoController::class)->except([
+    'create', 'store', 'update', 'destroy'
+]);
